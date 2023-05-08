@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="PQ.css">
+    <title>Past Question</title>
+</head>
+<body>
+  <div class="container">
+    <div class="control-group">
+      <h1>Select boxes</h1>
+      <div class="select">
+        <select id="year-select" onchange="filterImages()">
+          <option>Year</option>
+          <option>2022</option>
+          <option>2023</option>
+        </select>
+        <div class="select__arrow"></div>
+      </div>
+      <div class="select">
+        <select id="exam-type-select" onchange="filterImages()">
+          <option>Exam Type</option>
+          <option>Minor 1</option>
+          <option>Minor 2</option>
+          <option>Exam</option>
+        </select>
+        <div class="select__arrow"></div>
+      </div>
+      <div class="select">
+        <select id="subject-select" onchange="filterImages()">
+          <option>Subject</option>
+          <option>Computer Graphics</option>
+          <option>English</option>
+        </select>
+        <div class="select__arrow"></div>
+      </div>
+      <input type="submit" value="Find">
+    </div>
+  </div>
+  <script>
+  // Get references to the form and dropdown menus
+  const form = document.querySelector('.control-group');
+  const yearSelect = document.querySelector('#year-select');
+  const examTypeSelect = document.querySelector('#exam-type-select');
+  const subjectSelect = document.querySelector('#subject-select');
+
+  // Add an event listener to the form submit button
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent the default form submission behavior
+    // Get the selected options from the dropdown menus
+    const year = yearSelect.value;
+    const examType = examTypeSelect.value;
+    const subject = subjectSelect.value;
+    
+    // Construct the filename of the corresponding image
+    const imageName = `${year}_${examType}_${subject}.jpg`;
+    
+    // Construct the URL of the image file
+    const imagePath = "C:\\Users\\Naan\\Documents\\VS code projects\\NEW LAST PROJECT\\images\\${imageName}";
+    
+    // Find the image with the filename
+    const image = new Image();
+    image.onload = () => {
+    console.log(`Image found: ${imagePath}`);
+    
+    // do something with the image, e.g. display it on the page
+  };
+  image.onerror = () => {
+    console.log(`Image not found: ${imagePath}`);
+    // do something if the image is not found
+  };
+  image.src = imagePath;
+});
+  </script>
+</body>
+</html>
